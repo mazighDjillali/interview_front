@@ -1,0 +1,22 @@
+<div class="p-4">
+  <h2>Comments</h2>
+  <div *ngFor="let comment of comments" class="border p-3 mb-3 rounded">
+    <p><strong>{{ comment.author }}:</strong> {{ comment.text }}</p>
+
+    <div *ngFor="let reply of comment.replies" class="ml-4 text-gray-600">
+      ➤ {{ reply }}
+    </div>
+
+    <button (click)="selectComment(comment)" class="mt-2 text-blue-500 underline">
+      Reply
+    </button>
+  </div>
+
+  <div *ngIf="selectedComment" class="mt-4 border-t pt-4">
+    <h3>Reply to {{ selectedComment.author }}</h3>
+    <textarea [(ngModel)]="newReply" rows="3" class="border w-full p-2 rounded"></textarea>
+    <button (click)="addReply()" class="mt-2 bg-blue-600 text-white px-4 py-2 rounded">
+      Add Reply
+    </button>
+  </div>
+</div>
